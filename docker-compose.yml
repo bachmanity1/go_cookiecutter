@@ -1,0 +1,30 @@
+version: '3'
+services:
+  pandita:
+    build: .
+    ports:
+      - 10811:10811
+    environment:
+      DB_HOST: 'db'
+      DB_PORT: 3306
+      DB_NAME: 'pandita'
+      DB_USER: 'root'
+      DB_PASS: 'bachmanity1'
+      DB_RETRY: 'True'
+      LOGLEVEL: 'sql_info'
+      REDIS: 'redis'
+    healthcheck:
+        test: ["CMD", "curl", "http://localhost:10811/healthCheck"]
+  db:
+    image: mariadb
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'bachmanity1'
+      MYSQL_DATABASE: 'pandita'
+      MYSQL_USER: 'bachmanity1'
+      MYSQL_PASSWORD: 'bachmanity1'
+  redis:
+    image: redis
+
+

@@ -1,0 +1,6 @@
+vendor
+bin
+pkg.list
+api/docs
+.vscode
+.env*
